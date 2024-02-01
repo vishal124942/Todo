@@ -20,3 +20,6 @@ app.use(cookieParser());
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/tasks", taskRouter);
 app.use(errorMiddleware);
+app.use("/", (req, res) => {
+  res.send("Nicely Working");
+});
