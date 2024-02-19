@@ -4,6 +4,7 @@ import {
   getMyTask,
   newTask,
   updateTask,
+  deleteAlltask
 } from "../controllers/task.controller.js";
 import { isAuthenticated } from "../middlewares/auth.js";
 const router = express.Router();
@@ -13,4 +14,5 @@ router
   .route("/:id")
   .put(isAuthenticated, updateTask)
   .delete(isAuthenticated, deleteTask);
+  router.delete("/", isAuthenticated, deleteAllTasks);
 export default router;

@@ -52,3 +52,19 @@ export const deleteTask = async (req, res, next) => {
     next(error);
   }
 };
+export const deleteAlltask=async(req,res,next)=>{
+  try {
+    const userid = req.user._id;
+    const tasks = await Task.find({ user: userid });
+    if (!tasks) {
+      return next(new ErrorHandler("No tasks found for the user", 404));
+    }
+    await Task.deleteMany({ user: userid });
+    res.status(200).json({
+      success: true,
+      message: "All tasks deleted successfully",
+    });
+  } catch (error) {
+    next(error);
+  }
+}
